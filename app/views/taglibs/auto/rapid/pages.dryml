@@ -1,0 +1,465 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Portfolio"><ht key="portfolios.nav_item">Portfolios</ht></nav-item>
+  </navigation>
+</def>
+
+
+
+
+<!-- ====== Portfolio Pages ====== -->
+
+<def tag="index-page" for="Portfolio">
+  <page merge title="#{ht 'portfolios.index.title', :default=>['Portfolios'] }">
+    <body: class="index-page portfolio" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="portfolios.index.heading">
+            Portfolios
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="portfolios.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="portfolios.actions.new">New Portfolio</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Portfolio">
+  <page merge title="#{ht 'portfolios.new.title', :default=>[' New Portfolio'] }">
+    <body: class="new-page portfolio" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="portfolios.new.heading">
+            New Portfolio
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'portfolios.actions.create', :default=>['Create Portfolio']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Portfolio">
+  <page merge title="#{ht 'portfolios.show.title', :default=>['Portfolio'] }">
+
+    <body: class="show-page portfolio" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="portfolios.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="portfolios.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Portfolio
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description"/>
+            <field-list fields="value, hexcolor" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="portfolios.collection.heading.other" >
+                  Stockposts
+                </ht>
+              </h3>
+
+              <collection:stockposts param/>
+
+              <a:stockposts action="new" if="&can_create?(@portfolio.stockposts)" param="new-link">
+                <ht key="stockposts.actions.new">
+                  New Stockpost
+                </ht>
+              </a:stockposts>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Portfolio">
+  <page merge title="#{ht 'portfolios.edit.title', :default=>['Edit Portfolio'] }">
+
+    <body: class="edit-page portfolio" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="portfolios.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'portfolios.actions.delete', :default=>['Remove This Portfolio']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Stockpost Pages ====== -->
+
+<def tag="index-page" for="Stockpost">
+  <page merge title="#{ht 'stockposts.index.title', :default=>['Stockposts'] }">
+    <body: class="index-page stockpost" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="stockposts.index.heading">
+            Stockposts
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="stockposts.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="stockposts.actions.new">New Stockpost</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Stockpost">
+  <page merge title="#{ht 'stockposts.new.title', :default=>[' New Stockpost'] }">
+    <body: class="new-page stockpost" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="stockposts.new.heading">
+            New Stockpost
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'stockposts.actions.create', :default=>['Create Stockpost']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Stockpost">
+  <page merge title="#{ht 'stockposts.show.title', :default=>['Stockpost'] }">
+
+    <body: class="show-page stockpost" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:portfolio param="parent-link">&laquo; <ht key="stockposts.actions.back" to="portfolio"><name/></ht></a:portfolio>
+            <h2 param="heading">
+              <ht key="stockposts.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="stockposts.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Stockpost
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="acquired, amount, value" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Stockpost">
+  <page merge title="#{ht 'stockposts.edit.title', :default=>['Edit Stockpost'] }">
+
+    <body: class="edit-page stockpost" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="stockposts.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'stockposts.actions.delete', :default=>['Remove This Stockpost']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-portfolio-page" polymorphic/>
+<def tag="new-for-portfolio-page" for="Stockpost">
+  <page merge title="#{ht 'stockposts.new_for_owner.title', :default=>['New Stockpost for']} #{name :with => @portfolio}">
+    <body: class="new-for-owner-page  stockpost" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="stockposts.new_for_owner.heading">
+            New Stockpost
+          </ht>
+        </h2>
+        <h3 param="subheading">
+          <ht key="stockposts.new_for_owner.subheading">
+            For:
+          </ht>
+          <a with="&@portfolio"/>
+        </h3>
+      </header>
+
+      <section param="content-body">
+        <form owner="portfolio" method="post" param>
+          <field-list: skip="portfolio"/>
+          <submit: label="#{ht 'stockposts.actions.create', :default=>['Create Stockpost']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== User Pages ====== -->
+
+<def tag="index-page" for="User">
+  <page merge title="#{ht 'users.index.title', :default=>['Users'] }">
+    <body: class="index-page user" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.index.heading">
+            Users
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="users.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="User">
+  <page merge title="#{ht 'users.new.title', :default=>[' New User'] }">
+    <body: class="new-page user" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="users.new.heading">
+            New User
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'users.actions.create', :default=>['Create User']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'users.show.title', :default=>['User'] }">
+
+    <body: class="show-page user" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="users.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="administrator" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit User
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="email_address, state" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="User">
+  <page merge title="#{ht 'users.edit.title', :default=>['Edit User'] }">
+
+    <body: class="edit-page user" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="users.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'users.actions.delete', :default=>['Remove This User']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="signup-page" polymorphic/>
+<def tag="signup-page" for="User">
+  
+  <page title="#{ht 'users.signup.title', :default=>['Signup']}" merge>  
+
+    <body: class="lifecycle-start-page signup-page" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.signup.heading">
+            Signup
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <signup-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="reset-password-page" polymorphic/>
+<def tag="reset-password-page" for="User">
+  <page title="#{ht 'users.reset_password.title', :default=>['Reset Password']}" merge>
+
+    <body: class="lifecycle-transition-page reset-password-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.reset_password.heading">
+            Reset Password
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <reset-password-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+

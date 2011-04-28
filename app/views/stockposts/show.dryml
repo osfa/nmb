@@ -1,0 +1,6 @@
+<show-page>
+<!--<content-body:>
+	<%= @foo %>
+</content-body:>
+-->
+</show-page>

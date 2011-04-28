@@ -1,0 +1,2 @@
+module StockpostsHelper
+end
